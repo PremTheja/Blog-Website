@@ -24,11 +24,29 @@ const userSchema = new Schema({
   },
 });
 
+const blogSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+}, {
+  timestamps: true, // Adds createdAt and updatedAt timestamps
+});
+
 const User = mongoose.model('User', userSchema);
+const Blog = mongoose.model('Blog', blogSchema);
 
 module.exports = {
-    User,
-    // Other exports if any
-  };
-
-
+  User,
+  Blog,
+  // Other exports if any
+};
